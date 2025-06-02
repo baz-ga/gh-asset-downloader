@@ -8,6 +8,7 @@
 # Date: 2025-06-02
 # Author: Rafal W. <https://github.com/kenorb>
 # Contributors: Benjamin W. Bohl <https://github.com/bwbohl>
+# Publisher: Bernd Alois Zimmermann-Gesamtausgabe <https://github.com/baz-ga>
 #
 # -----------------------------------------------------------------------------
 # License starting with version 1.0.1: https://opensource.org/license/GPL-3.0
