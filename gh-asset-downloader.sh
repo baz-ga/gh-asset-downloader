@@ -1,6 +1,43 @@
 #!/usr/bin/env bash
-# Script to download asset file from tag release using GitHub API v3.
-# See: http://stackoverflow.com/a/35688093/55075
+# -----------------------------------------------------------------------------
+# gh-asset-downloader
+# -----------------------------------------------------------------------------
+# A script for downloading a specific asset from a tagged GitHub
+# repository release using GitHub API v3.
+# Version: 1.0.1
+# Date: 2025-06-02
+# Author: Rafal W. <https://github.com/kenorb>
+# Contributors: Benjamin W. Bohl <https://github.com/bwbohl>
+#
+# -----------------------------------------------------------------------------
+# License starting with version 1.0.1: https://opensource.org/license/GPL-3.0
+# -----------------------------------------------------------------------------
+#
+# Copyright (C) 2025 Rafal W. <https://github.com/kenorb> and
+# Benjamin W. Bohl <https://github.com/bwbohl>
+#
+# This script is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This script is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this script.  If not, see <http://www.gnu.org/licenses/>.
+#
+# -----------------------------------------------------------------------------
+# Usage: gh-asset-downloader.sh [owner] [repo] [tag] [name]
+# Example:
+# gh-asset-downloader.sh bwbohl gh-asset-downloader 1.0.0 asset.tar.gz
+# Note:
+# This script requires curl, grep, sed, awk, and xargs (or gxargs).
+# -----------------------------------------------------------------------------
+# Script starts here.
+# -----------------------------------------------------------------------------
 
 # Echo welcome.
 echo "#######################################"
