@@ -106,8 +106,6 @@ echo "$id"
 echo ""
 
 # Download asset file.
-echo "Downloading asset..." >&2
-echo "$0 done." >&2echo "Downloading asset…"
 echo "Downloading asset…"
 echo "------------------"
 curl $CURL_ARGS -H "$AUTH" -H "Accept: application/octet-stream" -H "$API_VERSION" "$GH_ASSET"
