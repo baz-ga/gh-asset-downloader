@@ -4,14 +4,14 @@
 # -----------------------------------------------------------------------------
 # A script for downloading a specific asset from a tagged GitHub
 # repository release using GitHub API v3.
-# Version: 1.0.1
+# Version: 1.1.0
 # Date: 2025-06-02
 # Author: Rafal W. <https://github.com/kenorb>
 # Contributors: Benjamin W. Bohl <https://github.com/bwbohl>
 # Publisher: Bernd Alois Zimmermann-Gesamtausgabe <https://github.com/baz-ga>
 #
 # -----------------------------------------------------------------------------
-# License starting with version 1.0.1: https://opensource.org/license/GPL-3.0
+# License starting with version 1.1.0: https://opensource.org/license/GPL-3.0
 # -----------------------------------------------------------------------------
 #
 # Copyright (C) 2025 Rafal W. <https://github.com/kenorb> and
@@ -34,6 +34,8 @@
 # Usage: gh-asset-downloader.sh [owner] [repo] [tag] [name]
 # Example:
 # gh-asset-downloader.sh bwbohl gh-asset-downloader 1.0.0 asset.tar.gz
+# Example for latest release:
+# gh-asset-downloader.sh bwbohl gh-asset-downloader release-latest asset.tar.gz
 # Note:
 # This script requires curl, grep, sed, awk, and xargs (or gxargs).
 # -----------------------------------------------------------------------------
@@ -65,7 +67,12 @@ read owner repo tag name <<<$@
 # Define variables.
 GH_API="https://api.github.com"
 GH_REPO="$GH_API/repos/$owner/$repo"
-GH_TAGS="$GH_REPO/releases/tags/$tag"
+case $tag in
+  release-latest) GH_TAGS="$GH_REPO/releases/latest"
+  ;;
+  *) GH_TAGS="$GH_REPO/releases/tags/$tag"
+  ;;
+esac
 FORMAT="Accept: application/vnd.github+json"
 AUTH="Authorization: Bearer $GITHUB_API_TOKEN"
 API_VERSION="X-GitHub-Api-Version: 2022-11-28"
