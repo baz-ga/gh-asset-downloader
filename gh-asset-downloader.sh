@@ -66,10 +66,10 @@ read owner repo tag name <<<$@
 GH_API="https://api.github.com"
 GH_REPO="$GH_API/repos/$owner/$repo"
 GH_TAGS="$GH_REPO/releases/tags/$tag"
-WGET_ARGS="--content-disposition --auth-no-challenge --no-cookie"
 FORMAT="Accept: application/vnd.github+json"
 AUTH="Authorization: Bearer $GITHUB_API_TOKEN"
 API_VERSION="X-GitHub-Api-Version: 2022-11-28"
+#WGET_ARGS="--content-disposition --auth-no-challenge --no-cookie"
 CURL_ARGS="-LJO#"
 
 # Echo variables for debugging.
