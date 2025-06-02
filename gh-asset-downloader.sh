@@ -51,7 +51,7 @@ CWD="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 echo "Checking dependencies…"
 echo "----------------------"
 set -e
-type curl grep sed tr >&2
+type awk curl grep sed tr >&2
 xargs=$(which gxargs || which xargs)
 echo ""
 
@@ -66,11 +66,12 @@ read owner repo tag name <<<$@
 GH_API="https://api.github.com"
 GH_REPO="$GH_API/repos/$owner/$repo"
 GH_TAGS="$GH_REPO/releases/tags/$tag"
-AUTH="Authorization: token $GITHUB_API_TOKEN"
-WGET_ARGS="--content-disposition --auth-no-challenge --no-cookie"
+FORMAT="Accept: application/vnd.github+json"
+AUTH="Authorization: Bearer $GITHUB_API_TOKEN"
+API_VERSION="X-GitHub-Api-Version: 2022-11-28"
+#WGET_ARGS="--content-disposition --auth-no-challenge --no-cookie"
 CURL_ARGS="-LJO#"
 
-curl -o /dev/null -sH "$AUTH" $GH_REPO || { echo "Error: Invalid repo, token or network issue!";  exit 1; }
 # Echo variables for debugging.
 echo "Variables are…"
 echo "--------------"
@@ -84,12 +85,13 @@ echo ""
 # Validate GitHub API token.
 echo "Validating GitHub API token."
 echo "------------------------"
+curl -o /dev/null -L -H "$FORMAT" -H "$AUTH" -H "$API_VERSION" $GH_REPO || { echo "Error: Invalid repo, token or network issue!";  exit 1; }
 echo ""
 
 # Read asset tags.
-response=$(curl -sH "$AUTH" $GH_TAGS)
 echo "Reading Asset Tags…"
 echo "-------------------"
+response=$(curl -L -H "$FORMAT" -H "$AUTH" -H "$API_VERSION" $GH_TAGS)
 echo $response
 echo ""
 
@@ -104,10 +106,8 @@ echo "$id"
 echo ""
 
 # Download asset file.
-echo "Downloading asset..." >&2
-curl $CURL_ARGS -H "Authorization: token $GITHUB_API_TOKEN" -H 'Accept: application/octet-stream' "$GH_ASSET"
-echo "$0 done." >&2echo "Downloading asset…"
 echo "Downloading asset…"
 echo "------------------"
+curl $CURL_ARGS -H "$AUTH" -H "Accept: application/octet-stream" -H "$API_VERSION" "$GH_ASSET"
 echo "$0 done."
 echo ""
