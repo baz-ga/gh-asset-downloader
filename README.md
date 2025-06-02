@@ -1,6 +1,24 @@
 # gh-asset-downloader
 
-_gh-asset-downloader_ is a bash script for downloading assets available on GitHub tags via the GitHub API.
+_gh-asset-downloader_ is a bash script for downloading a specific asset from a tagged GitHub repository release using GitHub API v3.
+
+## Usage
+
+The script call needs four parameters:
+
+```bash
+gh-asset-downloader.sh [owner] [repo] [tag] [name]
+```
+With real values this could be:
+
+```bash
+gh-asset-downloader.sh baz-ga gh-asset-downloader 1.0.0 asset.tar.gz
+```
+
+> [!NOTE]
+> This script requires curl, grep, sed, awk, and xargs (or gxargs).
+> But it will check for these when run.
+
 
 ## Licenses
 
