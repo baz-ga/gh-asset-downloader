@@ -51,7 +51,7 @@ CWD="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 echo "Checking dependencies…"
 echo "----------------------"
 set -e
-type curl grep sed tr >&2
+type awk curl grep sed tr >&2
 xargs=$(which gxargs || which xargs)
 echo ""
 
