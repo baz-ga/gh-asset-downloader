@@ -52,6 +52,7 @@ echo ""
 response=$(curl -sH "$AUTH" $GH_TAGS)
 echo "Reading Asset Tags…"
 echo "-------------------"
+echo $response
 echo ""
 
 # Get ID of the asset based on given name.
@@ -70,4 +71,5 @@ curl $CURL_ARGS -H "Authorization: token $GITHUB_API_TOKEN" -H 'Accept: applicat
 echo "$0 done." >&2echo "Downloading asset…"
 echo "Downloading asset…"
 echo "------------------"
+echo "$0 done."
 echo ""
