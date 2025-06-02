@@ -61,10 +61,13 @@ eval $(echo "$response" | grep -C3 "name.:.\+$name" | grep -w id | tr : = | tr -
 #id=$(echo "$response" | jq --arg name "$name" '.assets[] | select(.name == $name).id') # If jq is installed, this can be used instead.
 [ "$id" ] || { echo "Error: Failed to get asset id, response: $response" | awk 'length($0)<100' >&2; exit 1; }
 GH_ASSET="$GH_REPO/releases/assets/$id"
+echo "$id"
+echo ""
 
 # Download asset file.
 echo "Downloading asset..." >&2
 curl $CURL_ARGS -H "Authorization: token $GITHUB_API_TOKEN" -H 'Accept: application/octet-stream' "$GH_ASSET"
 echo "$0 done." >&2echo "Downloading asset…"
+echo "Downloading asset…"
 echo "------------------"
 echo ""
