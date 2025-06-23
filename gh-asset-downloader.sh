@@ -4,7 +4,7 @@
 # -----------------------------------------------------------------------------
 # A script for downloading a specific asset from a tagged GitHub
 # repository release using GitHub API v3.
-# Version: 1.1.0
+# Version: 1.1.1
 # Date: 2025-06-02
 # Author: Rafal W. <https://github.com/kenorb>
 # Contributors: Benjamin W. Bohl <https://github.com/bwbohl>
